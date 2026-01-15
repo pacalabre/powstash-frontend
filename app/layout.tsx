@@ -42,7 +42,6 @@ export default function RootLayout({
           <NavigationMenuList>
             <NavigationMenuItem>
               <Link href="/">Home</Link>
-              <Link href="/test">Test</Link>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
