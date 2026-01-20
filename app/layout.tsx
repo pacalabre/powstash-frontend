@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-screen-xl mx-auto p-4`}
       >
         <Image
           src={skierPic.src}
@@ -54,7 +54,7 @@ export default function RootLayout({
             <NavigationMenuItem>
               <Link href="/">
                 <Image
-                  className="p-[20px]"
+                  className="pt-[20px]"
                   src="logo-shadow.svg"
                   alt="logo"
                   width={200}
