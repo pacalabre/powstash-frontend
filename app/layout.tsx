@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
+import Image from "next/image";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,6 +11,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
+import skierPic from "../public/skier-riding-lift.jpg";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -38,10 +40,28 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Image
+          src={skierPic.src}
+          alt="Background"
+          layout="fill"
+          objectFit="cover"
+          priority
+          className="absolute inset-0 z-[-1]"
+        />
+
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <Link href="/">Home</Link>
+              <Link href="/">
+                <Image
+                  className="p-[20px]"
+                  src="logo-shadow.svg"
+                  alt="logo"
+                  width={200}
+                  height={0}
+                  sizes="100vw"
+                ></Image>
+              </Link>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
