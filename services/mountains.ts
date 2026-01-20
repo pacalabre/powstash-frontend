@@ -14,3 +14,13 @@ export async function getMountains(): Promise<Mountain[]> {
 
   return response.json();
 }
+
+export async function getMountain(id: string): Promise<Mountain> {
+  const response = await fetch(`${API_URL}/${id}`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch mountain");
+  }
+
+  return response.json();
+}
