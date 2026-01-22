@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { getMountain, Mountain } from "@/services/mountains";
+import { getMountain } from "@/services/mountains";
+import { Mountain } from "@/app/types/mountainTypes";
 
 export default function MountainPage() {
   const params = useParams();
