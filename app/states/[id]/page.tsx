@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { getMountainsByStateId, Mountain } from "@/services/states";
+import { getMountainsByStateId } from "@/services/states";
+import { Mountain } from "@/app/types/mountainTypes";
 
 export default function StatePage() {
   const params = useParams();

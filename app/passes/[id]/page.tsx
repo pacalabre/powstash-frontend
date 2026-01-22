@@ -3,7 +3,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { getPassById, getMountainsByPassId, Pass, Mountain } from "@/services/passes";
+import { getPassById, getMountainsByPassId } from "@/services/passes";
+import { Pass } from "@/app/types/passTypes";
+import { Mountain } from "@/app/types/mountainTypes";
 
 export default function PassPage() {
   const params = useParams();

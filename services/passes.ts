@@ -1,12 +1,5 @@
-export interface Pass {
-  id: string;
-  name: string;
-}
-
-export interface Mountain {
-  id: string;
-  name: string;
-}
+import { Mountain } from "@/app/types/mountainTypes";
+import { Pass } from "@/app/types/passTypes";
 
 const API_URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/passes`;
 

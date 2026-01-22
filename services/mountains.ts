@@ -1,7 +1,4 @@
-export interface Mountain {
-  id: number;
-  name: string;
-}
+import { Mountain } from "@/app/types/mountainTypes";
 
 const API_URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/mountains`;
 

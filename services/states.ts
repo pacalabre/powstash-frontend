@@ -1,12 +1,5 @@
-export interface State {
-  id: string;
-  name: string;
-}
-
-export interface Mountain {
-  id: string;
-  name: string;
-}
+import { Mountain } from "@/app/types/mountainTypes";
+import { State } from "@/app/types/stateTypes";
 
 const API_URL = `${process.env.NEXT_PUBLIC_BACKEND_URL}/states`;
 
