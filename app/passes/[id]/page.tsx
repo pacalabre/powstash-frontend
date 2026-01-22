@@ -50,12 +50,12 @@ export default function PassPage() {
       <h1 className="text-accent text-3xl py-5 uppercase z-2 text-[35px] md:text-[50px] font-black [text-shadow:_-4px_6px_4px_rgba(0,0,0,0.25)]">
         {pass.name}
       </h1>
-      <section className="flex flex-col gap-5 text-[30px] font-bold my-[20px]">
+      <section className="flex flex-col gap-5 text-[20px] font-bold my-[20px]">
         {mountains.map((mountain) => (
           <Link
             key={mountain.id}
             href={`/mountains/${mountain.id}`}
-            className="text-accent"
+            className="text-accent hover:underline"
           >
             {mountain.name}
           </Link>

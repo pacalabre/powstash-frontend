@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { getStates, State } from "@/services/states";
+import { getStates } from "@/services/states";
+import { State } from "../types/stateTypes";
 
 export default function StatesPage() {
   const [states, setStates] = useState<State[]>([]);
@@ -29,12 +30,12 @@ export default function StatesPage() {
       <h1 className="text-accent text-3xl py-5 uppercase z-2 text-[35px] md:text-[50px] font-black [text-shadow:_-4px_6px_4px_rgba(0,0,0,0.25)]">
         States
       </h1>
-      <section className="flex flex-col gap-5 text-[30px] font-bold my-[20px]">
+      <section className="flex flex-col gap-5 text-[20px] font-bold my-[20px]">
         {states.map((state) => (
           <Link
             key={state.id}
             href={`/states/${state.id}`}
-            className="text-accent"
+            className="text-accent hover:underline"
           >
             {state.name}
           </Link>
