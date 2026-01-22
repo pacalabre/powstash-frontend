@@ -46,7 +46,7 @@ export default function RootLayout({
           layout="fill"
           objectFit="cover"
           priority
-          className="absolute inset-0 z-[-1]"
+          className="absolute inset-0 z-[-1] brightness-[0.75]"
         />
 
         <NavigationMenu>
