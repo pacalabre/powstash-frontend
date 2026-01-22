@@ -40,8 +40,10 @@ export default function PassesPage() {
             <CardFooter className="bg-white">
               <div>
                 <p className="font-bold text-lg capitalize mb-2">{pass.name}</p>
-                <Button asChild>
-                  <Link href={`/mountains/${pass.id}`}>View Mountains</Link>
+                <Button asChild className="capitalize">
+                  <Link href={`/passes/${pass.id}`}>
+                    View {pass.name} Mountains
+                  </Link>
                 </Button>
               </div>
             </CardFooter>
