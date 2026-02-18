@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { getMountains, Mountain } from "@/services/mountains";
+import { getMountains } from "@/services/mountains";
+import { Mountain } from "./types/mountainTypes";
 import { Button } from "@/components/ui/button";
 import skierPic from "../public/skier-riding-lift.jpg";
 
