@@ -5,6 +5,12 @@ import { useParams } from "next/navigation";
 import { getMountain } from "@/services/mountains";
 import { Mountain } from "@/app/types/mountainTypes";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import Image from "next/image";
 
 export default function MountainPage() {
@@ -43,12 +49,12 @@ export default function MountainPage() {
         <Image src={imageUrl} alt="image" width={200} height={200} />
       )}
 
-      <section>
-        <p>{exampleAddress}</p>
-        <Button onClick={handleDirectionsClick} className="max-w-[150px]">
-          Get Directions
-        </Button>
-      </section>
+      <Button
+        onClick={handleDirectionsClick}
+        className="max-w-[150px] m-[20px]"
+      >
+        Open in apple maps
+      </Button>
       <section className="flex justify-center">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
@@ -56,11 +62,57 @@ export default function MountainPage() {
           minim veniam, quis nostrud exercitation ullamco laboris.
         </p>
       </section>
-      <section>
-        <h2>Weather</h2>
-        <p>Current Conditions: Sunny, 28°F</p>
-        <p>Wind: 5 mph NW</p>
-        <p>Snow Base: 48 inches</p>
+      <section className="w-full max-w-[500px]">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Directions</AccordionTrigger>
+            <AccordionContent>
+              <p>{exampleAddress}</p>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Weather</AccordionTrigger>
+            <AccordionContent>
+              <p>Current Conditions: Sunny, 28°F</p>
+              <p>Wind: 5 mph NW</p>
+              <p>Snow Base: 48 inches</p>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Snowfall</AccordionTrigger>
+            <AccordionContent>
+              <p>80 inch base</p>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Local Knowledge</AccordionTrigger>
+            <AccordionContent>
+              <p>80 inch base</p>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Lodging</AccordionTrigger>
+            <AccordionContent>
+              <p>List from airbnb or expedia</p>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Pass Information</AccordionTrigger>
+            <AccordionContent>
+              <p>Day prices and pass</p>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </section>
     </main>
   );
