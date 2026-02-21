@@ -23,31 +23,35 @@ export default function MountainPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  function callMountainWeatherService(latitude: number, longitude: number) {
+    getMountainWeather(latitude, longitude).then((data) => {
+      console.log("weather", data);
+      return data;
+    });
+  }
+
+  function callResortStatusService(mountainName: string) {
+    getResortStatus(mountainName).then((data) => {
+      console.log("resort data", data);
+      return data;
+    });
+  }
+
   useEffect(() => {
     getMountain(params.id as string)
       .then((data) => {
         setMountain(data);
         setLoading(false);
+        callResortStatusService(data.name.toLowerCase());
+        if (data.latitude && data.longitude) {
+          callMountainWeatherService(data.latitude, data.longitude);
+        }
       })
       .catch((err) => {
         setError(err.message);
         setLoading(false);
       });
   }, [params.id]);
-
-  useEffect(() => {
-    if (mountain?.latitude && mountain.longitude) {
-      getMountainWeather(mountain.latitude, mountain.latitude).then((data) => {
-        console.log("weather", data);
-      });
-    }
-
-    if (mountain?.name) {
-      getResortStatus(mountain.name.toLowerCase()).then((data) => {
-        console.log("resort data", data);
-      });
-    }
-  }, [mountain]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
