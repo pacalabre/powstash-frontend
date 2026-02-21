@@ -20,6 +20,7 @@ import Image from "next/image";
 export default function MountainPage() {
   const params = useParams();
   const [mountain, setMountain] = useState<Mountain>();
+  const [mountainLiftStatus, setMountainLiftStatus] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,6 +34,7 @@ export default function MountainPage() {
   function callResortStatusService(mountainName: string) {
     getResortStatus(mountainName).then((data) => {
       console.log("resort data", data);
+      setMountainLiftStatus(data.lifts);
       return data;
     });
   }
@@ -104,9 +106,22 @@ export default function MountainPage() {
         </Accordion>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger>Trail Report</AccordionTrigger>
+            <AccordionTrigger>Lift Report</AccordionTrigger>
             <AccordionContent>
-              <p>80 inch base</p>
+              {mountainLiftStatus && (
+                <>
+                  <p>Open: {mountainLiftStatus.stats.open}</p>
+                  <p>Closed: {mountainLiftStatus.stats.closed}</p>
+                  <h3>Chair Status</h3>
+                  {Object.entries(mountainLiftStatus.status).map(
+                    ([liftName, liftStatus]) => (
+                      <p key={liftName}>
+                        {liftName}: {liftStatus as string}
+                      </p>
+                    ),
+                  )}
+                </>
+              )}
             </AccordionContent>
           </AccordionItem>
         </Accordion>
