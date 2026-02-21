@@ -88,7 +88,7 @@ export default function MountainPage() {
       <section className="w-full max-w-[500px]">
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger>Address</AccordionTrigger>
+            <AccordionTrigger className="text-lg">Address</AccordionTrigger>
             <AccordionContent>
               <p>{exampleAddress}</p>
             </AccordionContent>
@@ -96,7 +96,7 @@ export default function MountainPage() {
         </Accordion>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger>Weather</AccordionTrigger>
+            <AccordionTrigger className="text-lg">Weather</AccordionTrigger>
             <AccordionContent>
               <p>Current Conditions: Sunny, 28°F</p>
               <p>Wind: 5 mph NW</p>
@@ -106,7 +106,7 @@ export default function MountainPage() {
         </Accordion>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger>Lift Report</AccordionTrigger>
+            <AccordionTrigger className="text-lg">Lift Report</AccordionTrigger>
             <AccordionContent>
               {mountainLiftStatus && (
                 <>
@@ -127,7 +127,9 @@ export default function MountainPage() {
         </Accordion>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger>Local Knowledge</AccordionTrigger>
+            <AccordionTrigger className="text-lg">
+              Local Knowledge
+            </AccordionTrigger>
             <AccordionContent>
               <p>80 inch base</p>
             </AccordionContent>
@@ -135,7 +137,7 @@ export default function MountainPage() {
         </Accordion>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger>Lodging</AccordionTrigger>
+            <AccordionTrigger className="text-lg">Lodging</AccordionTrigger>
             <AccordionContent>
               <p>List from airbnb or expedia</p>
             </AccordionContent>
@@ -143,7 +145,9 @@ export default function MountainPage() {
         </Accordion>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger>Pass Information</AccordionTrigger>
+            <AccordionTrigger className="text-lg">
+              Pass Information
+            </AccordionTrigger>
             <AccordionContent>
               <p>Day prices and pass</p>
             </AccordionContent>
