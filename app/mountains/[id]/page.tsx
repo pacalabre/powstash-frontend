@@ -2,7 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import { getMountain } from "@/services/mountains";
+import {
+  getMountain,
+  getMountainWeather,
+  getResortStatus,
+} from "@/services/mountains";
 import { Mountain } from "@/app/types/mountainTypes";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,7 +19,7 @@ import Image from "next/image";
 
 export default function MountainPage() {
   const params = useParams();
-  const [mountain, setMountain] = useState<Mountain | null>(null);
+  const [mountain, setMountain] = useState<Mountain>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -30,6 +34,20 @@ export default function MountainPage() {
         setLoading(false);
       });
   }, [params.id]);
+
+  useEffect(() => {
+    if (mountain?.latitude && mountain.longitude) {
+      getMountainWeather(mountain.latitude, mountain.latitude).then((data) => {
+        console.log("weather", data);
+      });
+    }
+
+    if (mountain?.name) {
+      getResortStatus(mountain.name.toLowerCase()).then((data) => {
+        console.log("resort data", data);
+      });
+    }
+  }, [mountain]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -48,7 +66,6 @@ export default function MountainPage() {
       {imageUrl && (
         <Image src={imageUrl} alt="image" width={200} height={200} />
       )}
-
       <Button
         onClick={handleDirectionsClick}
         className="max-w-[150px] m-[20px]"
@@ -65,7 +82,7 @@ export default function MountainPage() {
       <section className="w-full max-w-[500px]">
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger>Directions</AccordionTrigger>
+            <AccordionTrigger>Address</AccordionTrigger>
             <AccordionContent>
               <p>{exampleAddress}</p>
             </AccordionContent>
@@ -83,7 +100,7 @@ export default function MountainPage() {
         </Accordion>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger>Snowfall</AccordionTrigger>
+            <AccordionTrigger>Trail Report</AccordionTrigger>
             <AccordionContent>
               <p>80 inch base</p>
             </AccordionContent>
