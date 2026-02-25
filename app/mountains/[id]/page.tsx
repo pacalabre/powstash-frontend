@@ -88,7 +88,9 @@ export default function MountainPage() {
       <section className="w-full max-w-[500px]">
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger className="text-lg">Address</AccordionTrigger>
+            <AccordionTrigger className="text-lg font-bold">
+              Address
+            </AccordionTrigger>
             <AccordionContent>
               <p>{exampleAddress}</p>
             </AccordionContent>
@@ -96,7 +98,9 @@ export default function MountainPage() {
         </Accordion>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger className="text-lg">Weather</AccordionTrigger>
+            <AccordionTrigger className="text-lg font-bold">
+              Weather
+            </AccordionTrigger>
             <AccordionContent>
               <p>Current Conditions: Sunny, 28°F</p>
               <p>Wind: 5 mph NW</p>
@@ -106,16 +110,26 @@ export default function MountainPage() {
         </Accordion>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger className="text-lg">Lift Report</AccordionTrigger>
+            <AccordionTrigger className="text-lg font-bold">
+              Lift Report
+            </AccordionTrigger>
             <AccordionContent>
               {mountainLiftStatus && (
                 <>
-                  <p>Open: {mountainLiftStatus.stats.open}</p>
-                  <p>Closed: {mountainLiftStatus.stats.closed}</p>
-                  <h3>Chair Status</h3>
+                  <div className="flex gap-4 text-lg">
+                    <p>Open: {mountainLiftStatus.stats.open}</p>
+                    <p>Closed: {mountainLiftStatus.stats.closed}</p>
+                  </div>
                   {Object.entries(mountainLiftStatus.status).map(
                     ([liftName, liftStatus]) => (
-                      <p key={liftName}>
+                      <p key={liftName} className="flex items-center gap-2">
+                        <span
+                          className={`w-3 h-3 rounded-full ${
+                            (liftStatus as string).toLowerCase() === "open"
+                              ? "bg-green-500"
+                              : "bg-red-500"
+                          }`}
+                        />
                         {liftName}: {liftStatus as string}
                       </p>
                     ),
@@ -127,7 +141,7 @@ export default function MountainPage() {
         </Accordion>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger className="text-lg">
+            <AccordionTrigger className="text-lg font-bold">
               Local Knowledge
             </AccordionTrigger>
             <AccordionContent>
@@ -137,7 +151,9 @@ export default function MountainPage() {
         </Accordion>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger className="text-lg">Lodging</AccordionTrigger>
+            <AccordionTrigger className="text-lg font-bold">
+              Lodging
+            </AccordionTrigger>
             <AccordionContent>
               <p>List from airbnb or expedia</p>
             </AccordionContent>
@@ -145,7 +161,7 @@ export default function MountainPage() {
         </Accordion>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger className="text-lg">
+            <AccordionTrigger className="text-lg font-bold">
               Pass Information
             </AccordionTrigger>
             <AccordionContent>
