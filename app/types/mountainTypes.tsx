@@ -1,6 +1,9 @@
 export type Mountain = {
   id: number;
   name: string;
-  latitude?: number;
-  longitude?: number;
+  description: string;
+  address: string;
+  longitude: string;
+  latitude: string;
+  localKnowledge: string;
 };
