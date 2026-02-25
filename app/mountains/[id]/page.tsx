@@ -46,7 +46,10 @@ export default function MountainPage() {
         setLoading(false);
         callResortStatusService(data.name.toLowerCase());
         if (data.latitude && data.longitude) {
-          callMountainWeatherService(data.latitude, data.longitude);
+          callMountainWeatherService(
+            Number(data.latitude),
+            Number(data.longitude),
+          );
         }
       })
       .catch((err) => {
@@ -92,7 +95,7 @@ export default function MountainPage() {
               Address
             </AccordionTrigger>
             <AccordionContent>
-              <p>{exampleAddress}</p>
+              <p>{mountain.address}</p>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -125,9 +128,9 @@ export default function MountainPage() {
                       <p key={liftName} className="flex items-center gap-2">
                         <span
                           className={`w-3 h-3 rounded-full ${
-                            (liftStatus as string).toLowerCase() === "open"
-                              ? "bg-green-500"
-                              : "bg-red-500"
+                            (liftStatus as string).toLowerCase() === "closed"
+                              ? "bg-red-500"
+                              : "bg-green-500"
                           }`}
                         />
                         {liftName}: {liftStatus as string}
@@ -145,7 +148,7 @@ export default function MountainPage() {
               Local Knowledge
             </AccordionTrigger>
             <AccordionContent>
-              <p>80 inch base</p>
+              <p>{mountain.localKnowledge}</p>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
