@@ -40,14 +40,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-screen-xl mx-auto p-4`}
       >
-        <Image
-          src={skierPic.src}
-          alt="Background"
-          layout="fill"
-          objectFit="cover"
-          priority
-          className="absolute inset-0 z-[-1] brightness-[0.75]"
-        />
+        <div className="fixed inset-0 z-[-1]">
+          <Image
+            src={skierPic.src}
+            alt="Background"
+            fill
+            priority
+            className="object-cover brightness-[0.75]"
+          />
+        </div>
 
         <NavigationMenu>
           <NavigationMenuList>
