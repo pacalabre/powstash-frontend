@@ -21,6 +21,7 @@ export default function MountainPage() {
   const params = useParams();
   const [mountain, setMountain] = useState<Mountain>();
   const [mountainLiftStatus, setMountainLiftStatus] = useState<any>(null);
+  const [weather, setWeather] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -71,7 +72,7 @@ export default function MountainPage() {
   };
 
   return (
-    <main className="mt-12 flex justify-center flex-col items-center max-w-[700px] m-auto backdrop-blur-[15px] border-solid border-bg-ring border-[1px] p-[20px]">
+    <main className="mt-12 flex justify-center flex-col items-center max-w-[700px] m-auto backdrop-blur-[15px] border border-grey p-[20px]">
       {imageUrl && (
         <Image src={imageUrl} alt="image" width={200} height={200} />
       )}
@@ -81,7 +82,7 @@ export default function MountainPage() {
       </section>
       <section className="w-full">
         <Accordion type="single" collapsible>
-          <AccordionItem value="item-1">
+          <AccordionItem value="item-1" className="border-b border-black">
             <AccordionTrigger className="text-lg font-bold">
               Address and Directions
             </AccordionTrigger>
@@ -95,7 +96,7 @@ export default function MountainPage() {
           </AccordionItem>
         </Accordion>
         <Accordion type="single" collapsible>
-          <AccordionItem value="item-1">
+          <AccordionItem value="item-1" className="border-b border-black">
             <AccordionTrigger className="text-lg font-bold">
               Weather
             </AccordionTrigger>
@@ -107,7 +108,7 @@ export default function MountainPage() {
           </AccordionItem>
         </Accordion>
         <Accordion type="single" collapsible>
-          <AccordionItem value="item-1">
+          <AccordionItem value="item-1" className="border-b border-black">
             <AccordionTrigger className="text-lg font-bold">
               Lift Report
             </AccordionTrigger>
@@ -138,7 +139,7 @@ export default function MountainPage() {
           </AccordionItem>
         </Accordion>
         <Accordion type="single" collapsible>
-          <AccordionItem value="item-1">
+          <AccordionItem value="item-1" className="border-b border-black">
             <AccordionTrigger className="text-lg font-bold">
               Local Knowledge
             </AccordionTrigger>
