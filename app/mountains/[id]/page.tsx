@@ -75,27 +75,22 @@ export default function MountainPage() {
       {imageUrl && (
         <Image src={imageUrl} alt="image" width={200} height={200} />
       )}
-      <Button
-        onClick={handleDirectionsClick}
-        className="max-w-[150px] m-[20px]"
-      >
-        Open in apple maps
-      </Button>
+
       <section className="flex justify-center">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris.
-        </p>
+        <p>{mountain.description}</p>
       </section>
-      <section className="w-full max-w-[500px]">
+      <section className="w-full">
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
             <AccordionTrigger className="text-lg font-bold">
-              Address
+              Address and Directions
             </AccordionTrigger>
             <AccordionContent>
               <p>{mountain.address}</p>
+
+              <Button onClick={handleDirectionsClick} className="max-w-[150px]">
+                Open in apple maps
+              </Button>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -149,16 +144,6 @@ export default function MountainPage() {
             </AccordionTrigger>
             <AccordionContent>
               <p>{mountain.localKnowledge}</p>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-        <Accordion type="single" collapsible>
-          <AccordionItem value="item-1">
-            <AccordionTrigger className="text-lg font-bold">
-              Lodging
-            </AccordionTrigger>
-            <AccordionContent>
-              <p>List from airbnb or expedia</p>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
