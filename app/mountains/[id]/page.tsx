@@ -27,12 +27,28 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Spinner } from "@/components/ui/spinner";
 import Image from "next/image";
-import { Wind, CloudRainWind } from "lucide-react";
+import { Wind, CloudRainWind, Cloud, Snowflake, Sun } from "lucide-react";
 
 function formatDay(timestamp: number): string {
   return new Date(timestamp * 1000).toLocaleDateString("en-US", {
     weekday: "short",
   });
+}
+
+function getWeatherIcon(description: string) {
+  const desc = description.toLowerCase();
+  switch (true) {
+    case desc.includes("rain"):
+      return <CloudRainWind />;
+    case desc.includes("cloud"):
+      return <Cloud />;
+    case desc.includes("snow"):
+      return <Snowflake />;
+    case desc.includes("sun"):
+      return <Sun />;
+    default:
+      return null;
+  }
 }
 
 export default function MountainPage() {
@@ -145,10 +161,11 @@ export default function MountainPage() {
                     </CardHeader>
                     <CardContent>
                       <div className="flex flex-col gap-2">
-                        <div className="flex items-center gap-2">
-                          <Badge variant="secondary">
-                            {weather.weather[0]?.description}
-                          </Badge>
+                        <div className="flex flex-col">
+                          {getWeatherIcon(
+                            weather.weather[0]?.description || "",
+                          )}
+                          <p>{weather.weather[0]?.description}</p>
                         </div>
                         <p>
                           High: {Math.round(weather.main.temp_max)}°F / Low:{" "}
@@ -176,15 +193,18 @@ export default function MountainPage() {
                     ) : (
                       <div className="flex flex-col gap-2">
                         {forecast.list.map((day) => (
-                          <div key={day.dt} className="flex items-center gap-4">
+                          <div key={day.dt} className="flex flex-col gap-4">
                             <span className="w-12">{formatDay(day.dt)}</span>
                             <span>
                               {Math.round(day.temp.min)}°F /
                               {Math.round(day.temp.max)}°F
                             </span>
-                            <Badge variant="outline">
-                              {day.weather[0]?.description}
-                            </Badge>
+                            <div className="flex flex-col">
+                              {getWeatherIcon(
+                                day.weather[0]?.description || "",
+                              )}
+                              <p>{day.weather[0]?.description}</p>
+                            </div>
                             <span>{Math.round(day.speed)} mph</span>
                           </div>
                         ))}
