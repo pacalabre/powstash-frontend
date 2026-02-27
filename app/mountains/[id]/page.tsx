@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import {
   getMountain,
+  getMountainForecast,
   getMountainWeather,
   getResortStatus,
 } from "@/services/mountains";
 import { Mountain } from "@/app/types/mountainTypes";
+import { CurrentWeather, Forecast } from "@/app/types/weatherTypes";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -15,20 +17,42 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Spinner } from "@/components/ui/spinner";
 import Image from "next/image";
+import { Wind, CloudRainWind } from "lucide-react";
+
+function formatDay(timestamp: number): string {
+  return new Date(timestamp * 1000).toLocaleDateString("en-US", {
+    weekday: "short",
+  });
+}
 
 export default function MountainPage() {
   const params = useParams();
   const [mountain, setMountain] = useState<Mountain>();
   const [mountainLiftStatus, setMountainLiftStatus] = useState<any>(null);
-  const [weather, setWeather] = useState();
+  const [weather, setWeather] = useState<CurrentWeather | null>(null);
+  const [forecast, setForecast] = useState<Forecast | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   function callMountainWeatherService(latitude: number, longitude: number) {
     getMountainWeather(latitude, longitude).then((data) => {
-      console.log("weather", data);
-      return data;
+      setWeather(data);
+    });
+  }
+
+  function callMountainForecastService(latitude: number, longitude: number) {
+    getMountainForecast(latitude, longitude).then((data) => {
+      setForecast(data);
     });
   }
 
@@ -41,8 +65,9 @@ export default function MountainPage() {
   }
 
   useEffect(() => {
-    getMountain(params.id as string)
-      .then((data) => {
+    const fetchMountain = async () => {
+      try {
+        const data = await getMountain(params.id as string);
         setMountain(data);
         setLoading(false);
         callResortStatusService(data.name.toLowerCase());
@@ -51,12 +76,17 @@ export default function MountainPage() {
             Number(data.latitude),
             Number(data.longitude),
           );
+          callMountainForecastService(
+            Number(data.latitude),
+            Number(data.longitude),
+          );
         }
-      })
-      .catch((err) => {
+      } catch (err: any) {
         setError(err.message);
         setLoading(false);
-      });
+      }
+    };
+    fetchMountain();
   }, [params.id]);
 
   if (loading) return <div>Loading...</div>;
@@ -101,9 +131,68 @@ export default function MountainPage() {
               Weather
             </AccordionTrigger>
             <AccordionContent>
-              <p>Current Conditions: Sunny, 28°F</p>
-              <p>Wind: 5 mph NW</p>
-              <p>Snow Base: 48 inches</p>
+              {!weather ? (
+                <div className="flex items-center gap-2">
+                  <Spinner />
+                  <span>Loading weather...</span>
+                </div>
+              ) : (
+                <div className="flex flex-col gap-4">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>{mountain.name}</CardTitle>
+                      <CardDescription>Current Conditions</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-2">
+                          <Badge variant="secondary">
+                            {weather.weather[0]?.description}
+                          </Badge>
+                        </div>
+                        <p>
+                          High: {Math.round(weather.main.temp_max)}°F / Low:{" "}
+                          {Math.round(weather.main.temp_min)}°F
+                        </p>
+                        <p>
+                          Feels like: {Math.round(weather.main.feels_like)}°F
+                        </p>
+
+                        <p>
+                          {" "}
+                          <Wind className="text-slate-600" />
+                          Wind: {Math.round(weather.wind.speed)} mph
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                  <div>
+                    <h3 className="font-bold">7-Day Forecast</h3>
+                    {!forecast ? (
+                      <div className="flex items-center gap-2">
+                        <Spinner />
+                        <span>Loading forecast...</span>
+                      </div>
+                    ) : (
+                      <div className="flex flex-col gap-2">
+                        {forecast.list.map((day) => (
+                          <div key={day.dt} className="flex items-center gap-4">
+                            <span className="w-12">{formatDay(day.dt)}</span>
+                            <span>
+                              {Math.round(day.temp.min)}°F /
+                              {Math.round(day.temp.max)}°F
+                            </span>
+                            <Badge variant="outline">
+                              {day.weather[0]?.description}
+                            </Badge>
+                            <span>{Math.round(day.speed)} mph</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -116,7 +205,12 @@ export default function MountainPage() {
               {mountainLiftStatus && (
                 <>
                   <div className="flex gap-4 text-lg">
-                    <p>Open: {mountainLiftStatus.stats.open}</p>
+                    <p>
+                      Open:
+                      {mountainLiftStatus.stats.open === 0
+                        ? mountainLiftStatus.stats.scheduled
+                        : mountainLiftStatus.stats.open}
+                    </p>
                     <p>Closed: {mountainLiftStatus.stats.closed}</p>
                   </div>
                   {Object.entries(mountainLiftStatus.status).map(
