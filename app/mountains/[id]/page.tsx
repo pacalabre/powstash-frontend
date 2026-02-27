@@ -160,7 +160,7 @@ export default function MountainPage() {
                       <CardDescription>Current Conditions</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <div className="flex flex-col gap-2">
+                      <div className="flex items-center justify-between items-center">
                         <div className="flex flex-col">
                           {getWeatherIcon(
                             weather.weather[0]?.description || "",
@@ -176,7 +176,6 @@ export default function MountainPage() {
                         </p>
 
                         <p>
-                          {" "}
                           <Wind className="text-slate-600" />
                           Wind: {Math.round(weather.wind.speed)} mph
                         </p>
@@ -191,9 +190,12 @@ export default function MountainPage() {
                         <span>Loading forecast...</span>
                       </div>
                     ) : (
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-2 m-[20px]">
                         {forecast.list.map((day) => (
-                          <div key={day.dt} className="flex flex-col gap-4">
+                          <div
+                            key={day.dt}
+                            className="flex flex-col gap-2 border border-gray-300 p-2"
+                          >
                             <span className="w-12">{formatDay(day.dt)}</span>
                             <span>
                               {Math.round(day.temp.min)}°F /
