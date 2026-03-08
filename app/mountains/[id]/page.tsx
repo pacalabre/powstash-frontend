@@ -51,6 +51,19 @@ function getWeatherIcon(description: string) {
   }
 }
 
+function getPassName(passId: number): string {
+  switch (passId) {
+    case 1:
+      return "ikon pass";
+    case 2:
+      return "epic pass";
+    case 3:
+      return "mountain collective";
+    default:
+      return "resort pass only";
+  }
+}
+
 export default function MountainPage() {
   const params = useParams();
   const [mountain, setMountain] = useState<Mountain>();
@@ -270,7 +283,9 @@ export default function MountainPage() {
               Pass Information
             </AccordionTrigger>
             <AccordionContent>
-              <p>Day prices and pass</p>
+              <p>
+                This resort is availble on the {getPassName(mountain.pass_id)}.
+              </p>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
