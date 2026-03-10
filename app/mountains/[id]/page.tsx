@@ -132,10 +132,9 @@ export default function MountainPage() {
 
   return (
     <main className="mt-12 flex justify-center flex-col items-center max-w-[700px] m-auto backdrop-blur-[15px] border border-grey p-[20px]">
-      {imageUrl && (
-        <Image src={imageUrl} alt="image" width={200} height={200} />
-      )}
-
+      <h1 className="text-accent text-3xl py-5 uppercase z-2 text-[35px] md:text-[50px] font-black [text-shadow:_-4px_6px_4px_rgba(0,0,0,0.25)]">
+        {mountain.name}
+      </h1>
       <section className="flex justify-center">
         <p>{mountain.description}</p>
       </section>
