@@ -54,11 +54,13 @@ function getWeatherIcon(description: string) {
 function getPassName(passId: number): string {
   switch (passId) {
     case 1:
-      return "ikon pass";
-    case 2:
       return "epic pass";
+    case 2:
+      return "ikon pass";
     case 3:
       return "mountain collective";
+    case 4:
+      return "indy";
     default:
       return "resort pass only";
   }
