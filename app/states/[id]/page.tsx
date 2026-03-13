@@ -39,7 +39,7 @@ export default function StatePage() {
           <Link
             key={mountain.id}
             href={`/mountains/${mountain.id}`}
-            className="hover:underline"
+            className="capitalize hover:underline"
           >
             {mountain.name}
           </Link>
