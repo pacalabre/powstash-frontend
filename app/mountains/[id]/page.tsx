@@ -83,7 +83,9 @@ export default function MountainPage() {
 
   function callMountainForecastService(latitude: number, longitude: number) {
     getMountainForecast(latitude, longitude).then((data) => {
-      setForecast(data);
+      if (data) {
+        setForecast(data);
+      }
     });
   }
 
@@ -232,42 +234,49 @@ export default function MountainPage() {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-        <Accordion type="single" collapsible>
-          <AccordionItem value="item-1" className="border-b border-black">
-            <AccordionTrigger className="text-lg font-bold">
-              Lift Report
-            </AccordionTrigger>
-            <AccordionContent>
-              {mountainLiftStatus && (
-                <>
-                  <div className="flex gap-4 text-lg">
-                    <p>
-                      Open:
-                      {mountainLiftStatus.stats.open === 0
-                        ? mountainLiftStatus.stats.scheduled
-                        : mountainLiftStatus.stats.open}
-                    </p>
-                    <p>Closed: {mountainLiftStatus.stats.closed}</p>
-                  </div>
-                  {Object.entries(mountainLiftStatus.status).map(
-                    ([liftName, liftStatus]) => (
-                      <p key={liftName} className="flex items-center gap-2">
-                        <span
-                          className={`w-3 h-3 rounded-full ${
-                            (liftStatus as string).toLowerCase() === "closed"
-                              ? "bg-red-500"
-                              : "bg-green-500"
-                          }`}
-                        />
-                        {liftName}: {liftStatus as string}
+        {mountainLiftStatus && (
+          <Accordion type="single" collapsible>
+            <AccordionItem value="item-1" className="border-b border-black">
+              <AccordionTrigger className="text-lg font-bold">
+                Lift Report
+              </AccordionTrigger>
+              <AccordionContent>
+                {mountainLiftStatus.stats.open || mountainLiftStatus.closed ? (
+                  <>
+                    <div className="flex gap-4 text-lg">
+                      <p>
+                        Open:
+                        {mountainLiftStatus.stats.open === 0
+                          ? mountainLiftStatus.stats.scheduled
+                          : mountainLiftStatus.stats.open}
                       </p>
-                    ),
-                  )}
-                </>
-              )}
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+                      <p>Closed: {mountainLiftStatus.stats.closed}</p>
+                    </div>
+                    {Object.entries(mountainLiftStatus.status).map(
+                      ([liftName, liftStatus]) => (
+                        <p key={liftName} className="flex items-center gap-2">
+                          <span
+                            className={`w-3 h-3 rounded-full ${
+                              (liftStatus as string).toLowerCase() === "closed"
+                                ? "bg-red-500"
+                                : "bg-green-500"
+                            }`}
+                          />
+                          {liftName}: {liftStatus as string}
+                        </p>
+                      ),
+                    )}
+                  </>
+                ) : (
+                  <p>
+                    No lift data is available for{" "}
+                    <span className="capitalize">{mountain.name}</span>.
+                  </p>
+                )}
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        )}
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1" className="border-b border-black">
             <AccordionTrigger className="text-lg font-bold">
