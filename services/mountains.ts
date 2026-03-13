@@ -56,5 +56,8 @@ export async function getResortStatus(mountainName: string) {
   if (!response) {
     throw new Error("Failed to fecth resort status");
   }
+  if (response.status === 404) {
+    return response;
+  }
   return response.json();
 }
