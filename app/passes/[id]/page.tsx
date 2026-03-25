@@ -55,7 +55,7 @@ export default function PassPage() {
           <Link
             key={mountain.id}
             href={`/mountains/${mountain.id}`}
-            className="hover:underline"
+            className="capitalize hover:underline"
           >
             {mountain.name}
           </Link>
