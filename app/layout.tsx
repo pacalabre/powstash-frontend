@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import skierPic from "../public/skier-riding-lift.jpg";
+import { HeaderLinks } from "@/components/header-links";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -51,20 +52,19 @@ export default function RootLayout({
         </div>
 
         <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <Link href="/">
-                <Image
-                  className="pt-[20px]"
-                  src="logo-shadow.svg"
-                  alt="logo"
-                  width={200}
-                  height={0}
-                  sizes="100vw"
-                ></Image>
-              </Link>
-            </NavigationMenuItem>
-          </NavigationMenuList>
+          <div className="w-full flex items-center justify-between lg:px-[60px]">
+            <Link href="/">
+              <Image
+                className="pt-[20px]"
+                src="logo-shadow.svg"
+                alt="logo"
+                width={200}
+                height={0}
+                sizes="100vw"
+              ></Image>
+            </Link>
+            <HeaderLinks></HeaderLinks>
+          </div>
         </NavigationMenu>
         {children}
       </body>
