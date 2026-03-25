@@ -6,4 +6,7 @@ export type Mountain = {
   longitude: string;
   latitude: string;
   localKnowledge: string;
+  pass_id: number;
+  state_id: number;
+  mountain_code: string;
 };
