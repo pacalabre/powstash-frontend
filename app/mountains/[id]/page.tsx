@@ -89,9 +89,8 @@ export default function MountainPage() {
     });
   }
 
-  function callResortStatusService(mountainName: string) {
-    getResortStatus(mountainName).then((data) => {
-      console.log("resort data", data);
+  function callResortStatusService(mountain: string) {
+    getResortStatus(mountain).then((data) => {
       setMountainLiftStatus(data.lifts);
       return data;
     });
@@ -103,7 +102,7 @@ export default function MountainPage() {
         const data = await getMountain(params.id as string);
         setMountain(data);
         setLoading(false);
-        callResortStatusService(data.name.toLowerCase());
+        callResortStatusService(data.mountain_code?.toLowerCase());
         if (data.latitude && data.longitude) {
           callMountainWeatherService(
             Number(data.latitude),
@@ -241,7 +240,9 @@ export default function MountainPage() {
                 Lift Report
               </AccordionTrigger>
               <AccordionContent>
-                {mountainLiftStatus.stats.open || mountainLiftStatus.closed ? (
+                {mountainLiftStatus.stats.open > 0 ||
+                mountainLiftStatus.stats.closed > 0 ||
+                mountainLiftStatus.stats.scheduled > 0 ? (
                   <>
                     <div className="flex gap-4 text-lg">
                       <p>
