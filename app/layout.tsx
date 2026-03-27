@@ -52,7 +52,7 @@ export default function RootLayout({
         </div>
 
         <NavigationMenu>
-          <div className="w-full flex items-center justify-between lg:px-[60px]">
+          <div className="w-full flex items-center justify-between">
             <Link href="/">
               <Image
                 className="pt-[20px]"
