@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { getPasses, Pass } from "@/services/passes";
-import { Card, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { getPasses } from "@/services/passes";
+import { Pass } from "../types/passTypes";
 
 export default function PassesPage() {
   const [passes, setPasses] = useState<Pass[]>([]);
@@ -33,21 +32,12 @@ export default function PassesPage() {
       </h1>
       <section className="grid gap-5 grid-cols-1 md:grid-cols-3">
         {passes.map((pass) => (
-          <Card className="backdrop-blur-[7px] bg-transparent" key={pass.id}>
-            <CardHeader className="min-h-[175px]">
-              <CardTitle>{pass.name}</CardTitle>
-            </CardHeader>
-            <CardFooter className="bg-white">
-              <div>
-                <p className="font-bold text-lg capitalize mb-2">{pass.name}</p>
-                <Button asChild className="capitalize">
-                  <Link href={`/passes/${pass.id}`}>
-                    View {pass.name} Mountains
-                  </Link>
-                </Button>
-              </div>
-            </CardFooter>
-          </Card>
+          <Link
+            href={`/passes/${pass.id}`}
+            style={{ backgroundImage: `url(pass-logos/${pass.name}.png)` }}
+            className="min-h-[175px] backdrop-blur-[7px] bg-transparent  bg-size-[50%] md:bg-size-[220px] bg-no-repeat ng-top bg-position-[center_center] border-solid border-bg-ring border-[1px]"
+            key={pass.id}
+          ></Link>
         ))}
       </section>
     </main>
