@@ -27,15 +27,15 @@ export default function PassesPage() {
 
   return (
     <main className="mt-12">
-      <h1 className="text-accent text-3xl py-5 uppercase z-2 text-[35px] md:text-[50px] font-black [text-shadow:_-4px_6px_4px_rgba(0,0,0,0.25)]">
+      <h1 className="text-accent text-3xl p-[30px_0_20px_0] uppercase z-2 text-[35px] md:text-[50px] font-black [text-shadow:_-4px_6px_4px_rgba(0,0,0,0.25)]">
         Passes
       </h1>
-      <section className="grid gap-5 grid-cols-1 md:grid-cols-3">
+      <section className="grid gap-5 grid-cols-1 md:grid-cols-2">
         {passes.map((pass) => (
           <Link
             href={`/passes/${pass.id}`}
             style={{ backgroundImage: `url(pass-logos/${pass.name}.png)` }}
-            className="min-h-[175px] backdrop-blur-[7px] bg-transparent  bg-size-[50%] md:bg-size-[220px] bg-no-repeat ng-top bg-position-[center_center] border-solid border-bg-ring border-[1px]"
+            className="min-h-[220px] backdrop-blur-[7px] bg-transparent  bg-size-[50%] md:bg-size-[220px] bg-no-repeat ng-top bg-position-[center_center] border-solid border-bg-ring border-[1px]"
             key={pass.id}
           ></Link>
         ))}

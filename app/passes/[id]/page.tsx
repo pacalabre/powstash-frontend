@@ -47,10 +47,10 @@ export default function PassPage() {
 
   return (
     <main className="mt-12 flex justify-center flex-col items-center max-w-[700px] m-auto backdrop-blur-[15px] border-solid border-bg-ring border-[1px]">
-      <h1 className="text-accent text-3xl py-5 uppercase z-2 text-[35px] md:text-[50px] font-black [text-shadow:_-4px_6px_4px_rgba(0,0,0,0.25)]">
+      <h1 className="text-accent text-3xl p-[30px_0_20px_0] uppercase z-2 text-[35px] md:text-[50px] font-black [text-shadow:_-4px_6px_4px_rgba(0,0,0,0.25)]">
         {pass.name}
       </h1>
-      <section className="flex flex-col gap-5 text-[20px] font-bold my-[20px]">
+      <section className="flex flex-col gap-5 text-[20px] font-bold pt-0 pb-[30px]">
         {mountains.map((mountain) => (
           <Link
             key={mountain.id}

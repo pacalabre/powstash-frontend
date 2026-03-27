@@ -12,10 +12,10 @@ export function HeaderLinks() {
 
   return (
     <div className="flex gap-8 font-bold pt-[35px]">
-      <Link className="hover:text-accent text-lg" href="/passes">
+      <Link className="hover:text-accent text-xl md:text-[25px]" href="/passes">
         Passes
       </Link>
-      <Link className="hover:text-accent text-lg" href="/states">
+      <Link className="hover:text-accent text-xl md:text-[25px]" href="/states">
         States
       </Link>
     </div>
