@@ -24,7 +24,6 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Spinner } from "@/components/ui/spinner";
 import Image from "next/image";
 import { Wind, CloudRainWind, Cloud, Snowflake, Sun } from "lucide-react";
@@ -121,15 +120,12 @@ export default function MountainPage() {
     fetchMountain();
   }, [params.id]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Spinner />;
   if (error) return <div>Error: {error}</div>;
   if (!mountain) return <div>Mountain not found</div>;
 
-  const exampleAddress = "123 Mountain Road, Ski Town, CO 80435";
-  const imageUrl = `/mountain-logos/${mountain.name}.png`;
-
-  const handleDirectionsClick = () => {
-    const encodedAddress = encodeURIComponent(exampleAddress);
+  const handleDirectionsClick = (address: string) => {
+    const encodedAddress = encodeURIComponent(address);
     window.open(`maps://maps.apple.com/?daddr=${encodedAddress}`, "_blank");
   };
 
@@ -150,7 +146,10 @@ export default function MountainPage() {
             <AccordionContent>
               <p>{mountain.address}</p>
 
-              <Button onClick={handleDirectionsClick} className="max-w-[150px]">
+              <Button
+                onClick={() => handleDirectionsClick(mountain.address)}
+                className="max-w-[150px]"
+              >
                 Open in apple maps
               </Button>
             </AccordionContent>
