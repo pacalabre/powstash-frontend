@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Dialog as SheetPrimitive } from "radix-ui";
-
+import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { XIcon } from "lucide-react";
@@ -75,7 +75,7 @@ function SheetContent({
               className="absolute top-3 right-3"
               size="icon-sm"
             >
-              <XIcon remixicon="RiCloseLine" />
+              <X />
               <span className="sr-only">Close</span>
             </Button>
           </SheetPrimitive.Close>
