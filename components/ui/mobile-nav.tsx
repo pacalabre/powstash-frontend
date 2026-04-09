@@ -17,7 +17,7 @@ export function MobileNav() {
           <Button
             variant="outline"
             size="icon"
-            className="absolute top-[60px] right-[12px] z-50 bg-transparent border-none flex md:hidden"
+            className="absolute top-[60px] right-[12px] z-50 bg-transparent border-none flex md:hidden hover:bg-transparent"
           >
             <Menu className="size-7" />
           </Button>
