@@ -14,6 +14,7 @@ import Link from "next/link";
 import skierPic from "../public/skier-riding-lift.jpg";
 import logo from "../public/logo-shadow.svg";
 import { HeaderLinks } from "@/components/header-links";
+import { MobileNav } from "@/components/ui/mobile-nav";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -51,7 +52,7 @@ export default function RootLayout({
             className="object-cover brightness-[0.75]"
           />
         </div>
-
+        <MobileNav />
         <NavigationMenu>
           <div className="w-full flex items-center justify-between">
             <Link href="/">
@@ -64,7 +65,9 @@ export default function RootLayout({
                 sizes="100vw"
               ></Image>
             </Link>
-            <HeaderLinks></HeaderLinks>
+            <div className="hidden md:flex">
+              <HeaderLinks></HeaderLinks>
+            </div>
           </div>
         </NavigationMenu>
         {children}
