@@ -140,7 +140,7 @@ export default function MountainPage() {
       <section className="w-full">
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1" className="border-b border-black">
-            <AccordionTrigger className="text-lg font-bold">
+            <AccordionTrigger className="text-xl font-bold">
               Address and Directions
             </AccordionTrigger>
             <AccordionContent>
@@ -157,7 +157,7 @@ export default function MountainPage() {
         </Accordion>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1" className="border-b border-black">
-            <AccordionTrigger className="text-lg font-bold">
+            <AccordionTrigger className="text-xl font-bold">
               Weather
             </AccordionTrigger>
             <AccordionContent>
@@ -241,7 +241,7 @@ export default function MountainPage() {
         {mountainLiftStatus && (
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1" className="border-b border-black">
-              <AccordionTrigger className="text-lg font-bold">
+              <AccordionTrigger className="text-xl font-bold">
                 Lift Report
               </AccordionTrigger>
               <AccordionContent>
@@ -290,7 +290,7 @@ export default function MountainPage() {
         )}
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1" className="border-b border-black">
-            <AccordionTrigger className="text-lg font-bold">
+            <AccordionTrigger className="text-xl font-bold">
               Local Knowledge
             </AccordionTrigger>
             <AccordionContent>
@@ -300,7 +300,7 @@ export default function MountainPage() {
         </Accordion>
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
-            <AccordionTrigger className="text-lg font-bold">
+            <AccordionTrigger className="text-xl font-bold">
               Pass Information
             </AccordionTrigger>
             <AccordionContent>
