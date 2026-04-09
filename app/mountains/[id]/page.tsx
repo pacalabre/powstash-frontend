@@ -144,7 +144,7 @@ export default function MountainPage() {
               Address and Directions
             </AccordionTrigger>
             <AccordionContent>
-              <p>{mountain.address}</p>
+              <p className="text-base">{mountain.address}</p>
 
               <Button
                 onClick={() => handleDirectionsClick(mountain.address)}
@@ -170,28 +170,34 @@ export default function MountainPage() {
                 <div className="flex flex-col gap-4">
                   <Card>
                     <CardHeader>
-                      <CardTitle>{mountain.name}</CardTitle>
-                      <CardDescription>Current Conditions</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="flex items-center justify-between items-center">
-                        <div className="flex flex-col">
-                          {getWeatherIcon(
-                            weather.weather[0]?.description || "",
-                          )}
-                          <p>{weather.weather[0]?.description}</p>
-                        </div>
+                      <CardTitle className="text-base capitalize">
+                        {mountain.name}
+                      </CardTitle>
+                      <CardDescription>Current Conditions::</CardDescription>
+                      <div className="flex flex-row gap-10">
                         <p>
-                          High: {Math.round(weather.main.temp_max)}°F / Low:{" "}
+                          High:
+                          {Math.round(weather.main.temp_max)}°F / Low:
                           {Math.round(weather.main.temp_min)}°F
                         </p>
                         <p>
                           Feels like: {Math.round(weather.main.feels_like)}°F
                         </p>
-
-                        <p>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex justify-between gap-10">
+                        <div className="flex flex-col">
+                          {getWeatherIcon(
+                            weather.weather[0]?.description || "",
+                          )}
+                          <p className="capitalize">
+                            {weather.weather[0]?.description}
+                          </p>
+                        </div>
+                        <p className="capitalize">
                           <Wind className="text-slate-600" />
-                          Wind: {Math.round(weather.wind.speed)} mph
+                          wind: {Math.round(weather.wind.speed)} mph
                         </p>
                       </div>
                     </CardContent>
@@ -244,17 +250,22 @@ export default function MountainPage() {
                 mountainLiftStatus.stats.scheduled > 0 ? (
                   <>
                     <div className="flex gap-4 text-lg">
-                      <p>
+                      <p className="text-base">
                         Open:
                         {mountainLiftStatus.stats.open === 0
                           ? mountainLiftStatus.stats.scheduled
                           : mountainLiftStatus.stats.open}
                       </p>
-                      <p>Closed: {mountainLiftStatus.stats.closed}</p>
+                      <p className="text-base">
+                        Closed: {mountainLiftStatus.stats.closed}
+                      </p>
                     </div>
                     {Object.entries(mountainLiftStatus.status).map(
                       ([liftName, liftStatus]) => (
-                        <p key={liftName} className="flex items-center gap-2">
+                        <p
+                          key={liftName}
+                          className="flex items-center gap-2 text-base"
+                        >
                           <span
                             className={`w-3 h-3 rounded-full ${
                               (liftStatus as string).toLowerCase() === "closed"
@@ -268,7 +279,7 @@ export default function MountainPage() {
                     )}
                   </>
                 ) : (
-                  <p>
+                  <p className="text-base">
                     No lift data is available for{" "}
                     <span className="capitalize">{mountain.name}</span>.
                   </p>
@@ -283,7 +294,7 @@ export default function MountainPage() {
               Local Knowledge
             </AccordionTrigger>
             <AccordionContent>
-              <p>{mountain.localKnowledge}</p>
+              <p className="text-base">{mountain.localKnowledge}</p>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -293,7 +304,7 @@ export default function MountainPage() {
               Pass Information
             </AccordionTrigger>
             <AccordionContent>
-              <p>
+              <p className="text-base">
                 This resort is availble on the {getPassName(mountain.pass_id)}.
               </p>
             </AccordionContent>
