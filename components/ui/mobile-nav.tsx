@@ -1,14 +1,15 @@
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetTitle,
-} from "@/components/ui/sheet";
+"use client";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { HeaderLinks } from "../header-links";
 
 export function MobileNav() {
+  const pathname = usePathname();
+  if (pathname === "/" || pathname === "/passes" || pathname === "/states")
+    return null;
+
   return (
     <Sheet>
       <SheetTrigger asChild>
