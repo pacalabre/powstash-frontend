@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import skierPic from "../public/skier-riding-lift.jpg";
+import logo from "../public/logo-shadow.svg";
 import { HeaderLinks } from "@/components/header-links";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -56,7 +57,7 @@ export default function RootLayout({
             <Link href="/">
               <Image
                 className="pt-[20px]"
-                src="logo-shadow.svg"
+                src={logo}
                 alt="logo"
                 width={200}
                 height={0}
