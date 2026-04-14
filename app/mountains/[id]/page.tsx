@@ -57,9 +57,7 @@ function getPassName(passId: number): string {
     case 2:
       return "ikon pass";
     case 3:
-      return "mountain collective";
-    case 4:
-      return "indy";
+      return "indy pass";
     default:
       return "resort pass only";
   }
