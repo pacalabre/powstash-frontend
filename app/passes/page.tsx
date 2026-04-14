@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { getPasses } from "@/services/passes";
 import { Pass } from "../types/passTypes";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function PassesPage() {
   const [passes, setPasses] = useState<Pass[]>([]);
@@ -22,7 +23,11 @@ export default function PassesPage() {
       });
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <Spinner className="size-8 absolute left-0 right-0 top-[45%] text-accent mx-auto" />
+    );
+  }
   if (error) return <div>Error: {error}</div>;
 
   return (

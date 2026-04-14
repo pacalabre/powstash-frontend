@@ -6,6 +6,7 @@ import Link from "next/link";
 import { getPassById, getMountainsByPassId } from "@/services/passes";
 import { Pass } from "@/app/types/passTypes";
 import { Mountain } from "@/app/types/mountainTypes";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function PassPage() {
   const params = useParams();
@@ -41,7 +42,11 @@ export default function PassPage() {
 
   const loading = passLoading || mountainsLoading;
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <Spinner className="size-8 absolute left-0 right-0 top-[45%] text-accent mx-auto" />
+    );
+  }
   if (error) return <div>Error: {error}</div>;
   if (!pass) return <div>Pass not found</div>;
 

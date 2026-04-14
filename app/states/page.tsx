@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { getStates } from "@/services/states";
 import { State } from "../types/stateTypes";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function StatesPage() {
   const [states, setStates] = useState<State[]>([]);
@@ -22,7 +23,11 @@ export default function StatesPage() {
       });
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <Spinner className="size-8 absolute left-0 right-0 top-[45%] text-accent mx-auto" />
+    );
+  }
   if (error) return <div>Error: {error}</div>;
 
   return (

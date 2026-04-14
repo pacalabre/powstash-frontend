@@ -120,7 +120,11 @@ export default function MountainPage() {
     fetchMountain();
   }, [params.id]);
 
-  if (loading) return <Spinner />;
+  if (loading) {
+    return (
+      <Spinner className="size-8 absolute left-0 right-0 top-[45%] text-accent mx-auto" />
+    );
+  }
   if (error) return <div>Error: {error}</div>;
   if (!mountain) return <div>Mountain not found</div>;
 

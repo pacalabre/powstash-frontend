@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { getMountainsByStateId } from "@/services/states";
 import { Mountain } from "@/app/types/mountainTypes";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function StatePage() {
   const params = useParams();
@@ -26,7 +27,11 @@ export default function StatePage() {
     }
   }, [params.id]);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <Spinner className="size-8 absolute left-0 right-0 top-[45%] text-accent mx-auto" />
+    );
+  }
   if (error) return <div>Error: {error}</div>;
 
   return (
